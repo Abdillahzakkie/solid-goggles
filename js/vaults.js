@@ -77,6 +77,7 @@ const settings = async () => {
         userLockedBalance.textContent = `${toFixed(fromWei(_balance))} ENOL`;
 
         const { totalLockedTokens, result } = await getPastEvents();
+        console.log(totalLockedTokens);
         totalVaultBalance.textContent = `${toFixed(totalLockedTokens)} ENOL`;
 
         /* Reset timer here */
@@ -102,10 +103,11 @@ const getPastEvents = async () => {
         let result = await EthanolVault.getPastEvents("_LockSavings", { fromBlock: '0', toBlock: latestBlockNumber });
         result = await formatEvents(result);
         
+        console.log(result);
         const totalLockedTokens = result.reduce((prev, curr) => {
             prev += Number(curr.stake);
             return prev;
-        }, [0]);
+        }, 0);
         return {
             totalLockedTokens,
             result
