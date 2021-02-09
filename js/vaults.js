@@ -43,8 +43,8 @@ const loadWeb3 = async () => {
         if(parseInt(_chainId, 16) !== 1) return alert("Connect wallet to a main network");
 
         const _accounts = await ethereum.request({ method: 'eth_accounts' });
-        // [user] = _accounts;
-        user = "0x270f23b52f77bB83272cB3cC6e5B21d3267e5f98"
+        [user] = _accounts;
+        // user = "0x270f23b52f77bB83272cB3cC6e5B21d3267e5f98"
     } catch (error) {
         console.log(error.message);
         return error.message;
